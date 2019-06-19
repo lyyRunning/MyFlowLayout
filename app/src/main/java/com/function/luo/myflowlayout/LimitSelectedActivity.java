@@ -44,7 +44,6 @@ public class LimitSelectedActivity extends Activity {
 
     private void init() {
         final LayoutInflater mInflater = LayoutInflater.from(this);
-
         /**
          * 选择三个标签
          */

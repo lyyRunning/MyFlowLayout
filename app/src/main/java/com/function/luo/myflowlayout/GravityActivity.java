@@ -22,7 +22,6 @@ public class GravityActivity extends Activity {
     }
 
 
-
     public static void launch(Context context) {
         Intent intent = new Intent(context, GravityActivity.class);
         context.startActivity(intent);
