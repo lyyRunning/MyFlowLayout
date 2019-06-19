@@ -15,6 +15,8 @@ import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import butterknife.BindView;
@@ -40,12 +42,9 @@ public class MultipleSelectionActivity extends Activity {
     TagFlowLayout idFlowlayout;
     @BindView(R.id.tv_text1)
     TextView tvText1;
+    List<User> list;
+    TagAdapter mAdapter;
 
-
-    private String[] mVals = new String[]
-            {"Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +59,28 @@ public class MultipleSelectionActivity extends Activity {
     private void init() {
         final LayoutInflater mInflater = LayoutInflater.from(this);
 
+        list = new ArrayList<>();
+        list.add(new User("Hello"));
+        list.add(new User("Android"));
+        list.add(new User("Weclome Hi "));
+        list.add(new User("Button"));
+        list.add(new User("TextView"));
+        list.add(new User("Weclome Hello"));
+        list.add(new User("Button Text"));
+        list.add(new User("TextView"));
+        list.add(new User("utton ImageView"));
+        list.add(new User("Weclome"));
+        list.add(new User("Hello"));
+        list.add(new User("Weclome Hi "));
+        list.add(new User("Button"));
+        list.add(new User("TextView"));
+        list.add(new User("Weclome Hello"));
+        list.add(new User("Button Text"));
+        list.add(new User("TextView"));
+        list.add(new User("utton ImageView"));
+        list.add(new User("Weclome"));
+        list.add(new User("Hello"));
+        list.add(new User("Weclome Hello"));
         /**
          * 选择三个标签
          */
@@ -74,16 +95,20 @@ public class MultipleSelectionActivity extends Activity {
         });
 
 
-        idFlowlayout.setAdapter(new TagAdapter<String>(mVals) {
+        idFlowlayout.setAdapter(mAdapter = new TagAdapter<User>(list) {
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
+            public View getView(FlowLayout parent, int position, User user) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.tv,
                         idFlowlayout, false);
-                tv.setText(s);
+                tv.setText(user.getName());
                 return tv;
             }
 
+
         });
+
+        //设置选中的按钮
+        mAdapter.setSelectedList(3);
     }
 
     public static void launch(Context context) {
